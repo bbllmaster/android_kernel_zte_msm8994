@@ -4,11 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [lineage-22.2]
-    paths:
-      - '.github/workflows/kernel.yml'
-      - 'scripts/**'
-      - 'README.md'
-      - 'PORTING.md'
 
 permissions:
   contents: read
