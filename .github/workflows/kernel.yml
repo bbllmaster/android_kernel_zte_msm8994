@@ -61,6 +61,7 @@ jobs:
           set -o pipefail
           export ARCH=arm64
           export CROSS_COMPILE=/tmp/gcc49/bin/aarch64-linux-android-
+          mkdir -p out
           make O=out msm8994_defconfig 2>&1 | tee build.log
           make O=out -j"$(nproc)" 2>&1 | tee -a build.log
 
