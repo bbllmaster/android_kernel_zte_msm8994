@@ -40,7 +40,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             bc bison build-essential curl flex git libelf-dev libssl-dev \
-            python3 rsync xz-utils
+            python2 rsync xz-utils
 
       - name: Verify kernel source
         run: |
@@ -61,6 +61,11 @@ jobs:
           set -o pipefail
           export ARCH=arm64
           export CROSS_COMPILE=/tmp/gcc49/bin/aarch64-linux-android-
+          # 3.10's gcc-wrapper.py is Python 2.
+          mkdir -p /tmp/py2
+          ln -sf "$(command -v python2)" /tmp/py2/python
+          export PATH=/tmp/py2:$PATH
+          python --version
           mkdir -p out
           make O=out msm8994_defconfig 2>&1 | tee build.log
           make O=out -j"$(nproc)" 2>&1 | tee -a build.log
