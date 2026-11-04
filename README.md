@@ -11,12 +11,19 @@ The kernel is ZTE's Marshmallow GPL drop:
 
 ## Import
 
+The 3.10.84 source is **committed directly** on the `lineage-22.2` branch
+(about 631 MiB working tree, 296 MiB `.git`). This makes CI builds
+reproducible and avoids downloading the ZTE tarball on every run.
+
+`scripts/import-zte-kernel.sh` is kept for refreshing the tree from the
+original tarball if needed:
+
 ```bash
 ./scripts/import-zte-kernel.sh /path/to/ZTE_A2015_Marshmallow_Kernel\(3.10.84\).tar.gz
 ```
 
-The script extracts the tarball and copies the tree into this repository
-without touching `.git`, `README.md`, or `PORTING.md`.
+The script copies the tree into this repository without touching `.git`,
+`README.md`, `PORTING.md`, or `.github/`.
 
 ## Build
 

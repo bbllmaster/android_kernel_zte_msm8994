@@ -42,14 +42,11 @@ jobs:
             bc bison build-essential curl flex git libelf-dev libssl-dev \
             python3 rsync xz-utils
 
-      - name: Fetch ZTE A2015 kernel source
+      - name: Verify kernel source
         run: |
-          curl -L --fail --retry 3 -o /tmp/zte-kernel.tar.gz \
-            'https://download.ztedevices.com/device/global/support/opensource/2/1297/ZTE_A2015_Marshmallow_Kernel(3.10.84).tar.gz'
-          echo '1952ab52f5ef3015c734cf8ef9fc48b3  /tmp/zte-kernel.tar.gz' | md5sum -c -
-          ./scripts/import-zte-kernel.sh /tmp/zte-kernel.tar.gz
           test -f Makefile
           grep -m1 '^SUBLEVEL' Makefile
+          test -d arch/arm64/boot/dts/qcom
 
       - name: Fetch AOSP GCC 4.9 (aarch64)
         run: |
