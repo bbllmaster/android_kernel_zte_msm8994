@@ -7,7 +7,9 @@ ZTE 3.10.84 BSP, not yet patched for Android 15.
 ## Board specifics
 
 - SoC: MSM8994 (Snapdragon 810), 4x A57 + 4x A53, Adreno 430.
-- Panel: NT35596 1080p (verify 2K variant).
+- Panel: r63419 Sharp WQHD 1440x2560, dual DSI, 60 Hz
+  (`dsi-panel-r63419-sharp-dualmipi{0,1}-{video,cmd}.dtsi`). NT35596 1080p dtsi
+  is also in the tree for the other A2015 variant; do not switch to it.
 - Touch: Synaptics DSX v21 (`CONFIG_TOUCHSCREEN_SYNAPTICS_DSX_v21`).
 - Audio: AK4961 + WCD9330 (A2015-specific; not required for first boot).
 - Wi-Fi/BT: Qualcomm QCA/WCNSS (qcwcn), same family as OnePlus 2.

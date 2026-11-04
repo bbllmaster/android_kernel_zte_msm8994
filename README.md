@@ -50,13 +50,14 @@ ZTE's drop does not contain an `a2015.dts`. The A2015 board changes are in
 `arch/arm64/boot/dts/qcom/msm8994-cdp.dtsi`:
 
 - `batterydata_zte_p894a02_3000mah.dtsi`
-- NT35596 1080p panel (`lead` / `tianma` variants)
+- r63419 Sharp WQHD dual-DSI panel (default `qcom,dsi-pref-prim-pan`)
+- NT35596 1080p panels (alternate variant, not used on P894A02 尊享版)
 - Synaptics DSX touch
 
-The stock B16 `boot.img` contains 42 appended DTBs. The A2015 candidate is the
-`MSM8994v2.1 + PMI8994 + PM8004 CDP` DTB (`qcom,board-id = <1 0>`), which
-contains both NT35596 panels and the Synaptics DSX node. Confirm the live board
-ID on the device before relying on it:
+The stock B16 `boot.img` contains 42 appended DTBs. The A2015 entry is the
+`MSM8994v2.1 + PMI8994 + PM8004 CDP` DTB (`qcom,board-id = <1 0>`); it carries
+the r63419 WQHD dual-DSI panel nodes and the Synaptics DSX node, matching the
+1440x2560 panel confirmed on the device. Verify the live board ID:
 
 ```bash
 adb shell cat /proc/device-tree/model
