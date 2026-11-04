@@ -43,11 +43,26 @@ ZTE's drop does not contain an `a2015.dts`. The A2015 board changes are in
 `arch/arm64/boot/dts/qcom/msm8994-cdp.dtsi`:
 
 - `batterydata_zte_p894a02_3000mah.dtsi`
-- NT35596 1080p panel
+- NT35596 1080p panel (`lead` / `tianma` variants)
 - Synaptics DSX touch
 
-The matching DTB is the CDP variant with `qcom,board-id = <1 0>`. Verify this
-against the stock boot image before flashing; if the bootloader uses another
-board ID, copy the DTS and adjust it.
+The stock B16 `boot.img` contains 42 appended DTBs. The A2015 candidate is the
+`MSM8994v2.1 + PMI8994 + PM8004 CDP` DTB (`qcom,board-id = <1 0>`), which
+contains both NT35596 panels and the Synaptics DSX node. Confirm the live board
+ID on the device before relying on it:
+
+```bash
+adb shell cat /proc/device-tree/model
+adb shell getprop | grep -E 'ro.boot|board'
+```
+
+Stock boot header/cmdline (for comparison):
+
+```
+kernel_size=19199991 ramdisk_size=3709343 page_size=4096
+no_console_suspend androidboot.console=ttyHSL0 androidboot.hardware=qcom
+user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1
+boot_cpus=0-5 msm-poweroff.download_mode=0
+```
 
 See `PORTING.md` for the Android 15 backport notes.
