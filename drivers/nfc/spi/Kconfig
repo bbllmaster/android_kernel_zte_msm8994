@@ -1,0 +1,27 @@
+#
+# Nxp SPi protocol (SPI) devices
+#
+
+menuconfig NFC_P61_DEVICES
+    bool "Nxp SPi protocol driver (SPI) devices"
+    default n
+    ---help---
+      You'll have to say Y if your computer contains an SPI device that
+      you want to use under Linux.
+
+      You can say N here if you don't have any SPI connected to your computer.
+
+if NFC_P61_DEVICES 
+
+config P61_NFC_SPI
+    tristate "PN61 NFC driver"
+    default n
+    ---help---
+      Say yes if you want SPI protocol driver.
+      This is for spi connected version. If unsure, say N here.
+
+      To compile this driver as a module, choose m here. The module will
+      be called 6p1.
+
+
+endif # NFC_P61_DEVICES

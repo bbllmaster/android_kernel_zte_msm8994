@@ -1,0 +1,3 @@
+config INPUT_FPC_M
+	tristate "fpc fingerprint driver for Android M"
+	default n
